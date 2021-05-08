@@ -1,0 +1,7 @@
+#!/bin/sh
+
+ram_full="$(free | grep  "Mem:") "
+read -a ram_arr <<< "$ram_full"
+
+procent="$(bc <<< "scale=3; ${ram_arr[2]} / ${ram_arr[1]} * 100")"
+echo "${procent%????}%"

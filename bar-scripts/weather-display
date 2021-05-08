@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#Gets weather data from pre-downloaded file
+
+#Get current temperature:
+current="  現$(sed '1,6!d' ~/.local/share/weather-report.txt | grep "°C" | grep -o "m\-\?+\?[0-9]\+" | tr -d 'm''\+' | tr '\n' ' ' | sed 's/ .*//')°"
+#Get daily min and max:
+temperature_list="$(sed '13!d' ~/.local/share/weather-report.txt | sed 's/([^ ]*)//g'| grep -o "m\-\?+\?[0-9]\+" | sed 's/m//g;s/+//g' | sort -n | tr '\n' ' ')"
+read -a temperature_array <<< "$temperature_list"
+min_max="低${temperature_array[0]}° 高${temperature_array[3]}°"
+							
+#Get max percipitation %:
+percip="雨$(sed '16!d' ~/.local/share/weather-report.txt | grep -o "[0-9]\+%" | tr -d '%' | sort -n | tr '\n' ' ' | grep -o '[0-9]\+\s$' | tr -d ' ')%"
+
+echo $current $min_max $percip | tr -d ' '
+											

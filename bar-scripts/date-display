@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "$(date "+%Y年%m月%d日") ($(grep "$(date "+%a")" ~/.local/share/ref/japan-days.ref | sed 's/.*://g')) | $(date "+%k:%M")  "
+

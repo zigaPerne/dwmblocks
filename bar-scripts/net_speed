@@ -1,0 +1,32 @@
+#!/bin/sh
+
+while :; do
+	speed_old_down=$(</sys/class/net/enp6s0/statistics/rx_bytes)
+	speed_old_up=$(</sys/class/net/enp6s0/statistics/tx_bytes)
+
+	sleep 3
+
+	speed_new=$(</sys/class/net/enp6s0/statistics/rx_bytes)
+	speed_per_second=$((($speed_new - $speed_old_down) * 8 / 3))
+
+	if (($speed_per_second < 1000)); then
+		echo "down " > /home/ziga/.local/share/net_out.txt
+	elif (($speed_per_second < 1000000)); then
+		echo "down⬇️"   > /home/ziga/.local/share/net_out.txt
+	else
+		echo "down⬇️"  > /home/ziga/.local/share/net_out.txt
+	fi
+
+	speed_new=$(</sys/class/net/enp6s0/statistics/tx_bytes)
+	speed_per_second=$((($speed_new - $speed_old_up) * 8 / 3))
+
+	if (($speed_per_second < 1000)); then
+		echo "up " >> /home/ziga/.local/share/net_out.txt
+	elif (($speed_per_second < 1000000)); then
+		echo "up⬆️"   >> /home/ziga/.local/share/net_out.txt
+	else
+		echo "up⬆️" >> /home/ziga/.local/share/net_out.txt
+	fi
+
+done
+

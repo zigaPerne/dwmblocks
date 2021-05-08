@@ -1,0 +1,3 @@
+#!/bin/sh
+
+df | grep nvme | grep -o "[0-9]\+%"
