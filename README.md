@@ -1,6 +1,6 @@
-#dwmblocks
+# dwmblocks status bar
 Custom weeb status bar for DWM. Runs scripts from ./bar-scripts.
-#Display:
+## Display:
 * Time
 * Date
 * Volume level
