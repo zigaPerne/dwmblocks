@@ -1,23 +1,15 @@
 #!/bin/sh
-#Gets the audio status info from pulseaudio.
-#If speaker or mic is muted, it displays additional messages.
+#Displays current audio status
 
 volume_full=$(pulseaudio-ctl full-status)
 read -a strarr <<< "$volume_full"
 volume_return="音${strarr[0]}%"
 
-#case ${strarr[0]} in
-#	100) volume_return="音100%" ;;
-#	[0-33]*) volume_return="音${strarr[0]}%" ;;
-#	[34-66]*) volume_return="音${strarr[0]}%" ;;
-#	*) volume_return="音${strarr[0]}%" ;;
-#esac
-
 case ${strarr[1]} in
-	yes) volume_return="${volume_return} 🔇"	;;
+	yes) volume_return="${volume_return} "	;;
 esac
 case ${strarr[2]} in
-	yes) volume_return="${volume_return} 🎙️" ;;
+	yes) volume_return="${volume_return} " ;;
 esac
 
 echo $volume_return

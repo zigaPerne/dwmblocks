@@ -2,3 +2,9 @@
 
 echo "$(date "+%Y年%m月%d日") ($(grep "$(date "+%a")" ~/Programs/suckless/dwmblocks/bar-scripts/ref/japan-days.ref | sed 's/.*://g')) | $(date "+%k:%M")  "
 
+case $BUTTON in
+	1) 	setsid "$TERMINAL" -i -g=50x20-7 -e calcurse;;
+	3) 	kill "$(ps -ef ww | grep calcurse | grep st | grep -o '[0-9]\{4,6\}' | sed -n '1p')";;
+
+esac
+
