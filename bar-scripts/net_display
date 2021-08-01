@@ -2,3 +2,12 @@
 
 echo "$(grep "down" /home/ziga/.local/share/net_out.txt | sed 's/[a-z]\+//' )/$(grep "up" /home/ziga/.local/share/net_out.txt | sed 's/[a-z]\+//')"
 
+#Click:
+case $BUTTON in
+	1) 	setsid "$TERMINAL" -i -g=90x8-7 -z 14 -e mtr;;
+	2) 	setsid "$TERMINAL" -e vim ~/Programs/suckless/dwmblocks/bar-scripts/net_display;;
+	3) 	kill "$(ps -ef ww | grep mtr | grep st | grep -o '[0-9]\{4,6\}' | sed -n '1p')";;
+
+esac
+
+

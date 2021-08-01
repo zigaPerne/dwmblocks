@@ -1,3 +1,12 @@
 #!/bin/sh
 
 df | grep nvme | grep -o "[0-9]\+%"
+
+#Click:
+case $BUTTON in
+	1) 	setsid "$TERMINAL" -e ranger;;
+	2) 	setsid "$TERMINAL" -e vim ~/Programs/suckless/dwmblocks/bar-scripts/disk;;
+	3) 	kill "$(ps -ef ww | grep ranger | grep st | grep -o '[0-9]\{4,6\}' | sed -n '1p')";;
+
+esac
+

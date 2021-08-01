@@ -5,3 +5,12 @@ read -a ram_arr <<< "$ram_full"
 
 procent="$(bc <<< "scale=3; ${ram_arr[2]} / ${ram_arr[1]} * 100")"
 echo "${procent%????}%"
+
+#Click:
+case $BUTTON in
+	1) 	setsid "$TERMINAL" -i -g=120x50-7 -z 14 -e htop;;
+	2) 	setsid "$TERMINAL" -e vim ~/Programs/suckless/dwmblocks/bar-scripts/memstatus;;
+	3) 	kill "$(ps -ef ww | grep htop | grep st | grep -o '[0-9]\{4,6\}' | sed -n '1p')";;
+
+esac
+

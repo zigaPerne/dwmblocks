@@ -2,3 +2,12 @@
 
 sudo pacman -Sy > /dev/null 2>&1
 echo "包:$(pacman -Qu | wc -l)"
+
+#Click:
+case $BUTTON in
+	1) 	setsid "$TERMINAL" -i -g=80x12-7 -z 16 -e pacman -Syu;;
+	2) 	setsid "$TERMINAL" -e vim ~/Programs/suckless/dwmblocks/bar-scripts/pacman-updates;;
+	3) 	kill "$(ps -ef ww | grep pulsemixer | grep st | grep -o '[0-9]\{4,6\}' | sed -n '1p')";;
+
+esac
+

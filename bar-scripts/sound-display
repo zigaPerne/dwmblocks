@@ -6,10 +6,20 @@ read -a strarr <<< "$volume_full"
 volume_return="音${strarr[0]}%"
 
 case ${strarr[1]} in
-	yes) volume_return="${volume_return} "	;;
+	yes) volume_return="${volume_return} 🔇";;
 esac
 case ${strarr[2]} in
-	yes) volume_return="${volume_return} " ;;
+	yes) volume_return="${volume_return} 🎙️" ;;
 esac
 
 echo $volume_return
+
+
+#Click:
+case $BUTTON in
+	1) 	setsid "$TERMINAL" -i -g=80x12-7 -z 14 -e pulsemixer;;
+	2) 	setsid "$TERMINAL" -e vim ~/Programs/suckless/dwmblocks/bar-scripts/sound-display;;
+	3) 	kill "$(ps -ef ww | grep pulsemixer | grep st | grep -o '[0-9]\{4,6\}' | sed -n '1p')";;
+
+esac
+
