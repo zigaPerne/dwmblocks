@@ -1,5 +1,5 @@
 # dwmblocks status bar
-Custom weeb status bar for DWM. Runs scripts from ./bar-scripts.
+Custom status bar for DWM. Runs scripts from ./bar-scripts.
 ## Display:
 * Time
 * Date
